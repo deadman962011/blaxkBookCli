@@ -5,7 +5,7 @@ const router = express.Router();
 
 
 
-const request = require('request')
+
 
 
 
@@ -14,12 +14,17 @@ const MainController = require('../controllers/MainController')
 
 
 
-router.get('/',function(req,res,next){
-   
+router.get('/',MainController.MainRoute);
 
-    
+router.get('/:bookId',MainController.BookOne)
 
-});
+router.post('/:bookId',MainController.BookOnePost)
+
+router.get('/Catigory/:CatigoryId',MainController.BookCatigoryGet)
+
+router.get('/Author/:AuthorId',MainController.BookAuthorGet)
+
+
 
 
 

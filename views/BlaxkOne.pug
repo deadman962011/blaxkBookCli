@@ -1,0 +1,154 @@
+extends layout
+
+
+block content
+
+ .container
+  .row
+   .col-sm-8
+    .panel.panel-default
+       .panel-body
+   .col-sm-4
+
+
+
+  .row
+
+   .col-sm-8
+     .panel.panel-default
+         .panel-body
+          .col-sm-5
+           img(src=""+book.BookPic, style='height:290px'  class='img-responsive' alt="alt")
+          
+          .col-sm-7(style="text-align:right;")
+              h2=book.BookName
+              br
+              h4 تصنيف الكتاب :   
+               span
+                a(href="http://127.0.0.1:4000/Catigory/"+catigory.id)=catigory.CatigoryName
+              h4  اسم الكاتب :  
+               span
+                a(href="http://127.0.0.1/Author/"+author.id)=author.AuthorName
+              h4 لغة الكتاب :  
+               span=book.BookLang
+              h4 عدد الصفحات :  
+               span=book.BookPagesNum 
+              h4 حجم الملف :   
+               span=book.BookSize
+              h4 تقييم الموقع :  
+               span=book.BookReview
+              h4 تاريخ الصدور :  
+               span=book.BookRelaseDate
+
+
+
+   .col-sm-4
+    .panel.panel-default
+        .panel-body
+         
+         ul.list-unstyled
+           each catigoryF in Catigories
+            li
+             a(href="http://127.0.0.1:4000/Catigory/"+catigoryF.id) 
+              h5=catigoryF.CatigoryName
+               span(class='pull-left')=catigoryF.CatigoryBooksNum
+          
+
+
+  
+  .row
+   .col-sm-8
+    .panel.panel-default
+        .panel-body
+         h4 عن الكتاب
+         p=book.BookDesc
+         br
+         br
+         br
+         a(href=""+book.BookLink class='btn btn-primary col-sm-12 col-xs-12') قراءة الكتاب
+         br
+         br
+         br
+         a(href=""+book.BookLink class='btn btn-success col-sm-12 col-xs-12') تحميل الكتاب 
+
+   .col-sm-4
+    .panel.panel-default
+        .panel-body
+         ul.list-unstyled
+          each AuthorF in Authors
+           li
+            a(href="http://127.0.0.1:4000/Author/"+AuthorF.id)
+             h5=AuthorF.AuthorName
+              span(Class='pull-left')=AuthorF.AuthorBooksNum
+
+  .row
+   .col-sm-12
+    each SameBookC in SameCatigory
+     .col-sm-3
+        .panel.panel-default
+            .panel-body
+             .blaxkBook
+              a(href="http://127.0.0.1:4000/"+SameBookC.id)  
+               img(src=""+SameBookC.BookPic, class='img-responsive' alt="alt" )
+              h4(class="")=SameBookC.BookName
+  .row
+   .col-sm-12
+    each SameBookA in SameAuthor
+     .col-sm-3
+        .panel.panel-default
+            .panel-body
+             .blaxkBook
+              a(href="http://127.0.0.1:4000/"+SameBookA.id)  
+               img(src=""+SameBookA.BookPic, class='img-responsive' alt="alt" )
+              h4(class="")=SameBookA.BookName
+  .row
+   .col-sm-8
+    .panel.panel-default
+      .panel-body
+       h3 قيم هذا الكتاب
+       form.form-horizontal( method="post")
+        .form-group
+         .col-sm-2
+          label.form-label(for="ReviewEmailI") الايميل:
+         .col-sm-8
+          input.form-control(type="text" name='ReviewEmailI' required )
+        .form-group
+         .col-sm-2
+          label.form-label(for="ReviewFullNameI") الاسم الكامل:
+         .col-sm-8
+          input.form-control(type="text" name='ReviewFullNameI' required )
+        .form-group
+         .col-sm-2
+          label.form-label(for="ReviwRateI") التقييم:
+         .col-sm-8
+          select.form-control( name='ReviewRateI' required )
+           option(value="1") 1
+           option(value="2") 2
+           option(value="3") 3
+           option(value="4") 4
+           option(value="5") 5
+        .form-group
+         .col-sm-2
+          label.form-label(for="ReviewDescI") الشرح:
+         .col-sm-8
+          textarea.form-control(Rows='12' name='ReviewDescI' required )
+        .form-group
+         .col-sm-offset-2.col-sm-2
+          input.btn.btn-primary(type="submit", )
+    .panel.panel-default
+      .panel-body
+       h3 تعليقات
+       each comment in Comments
+        br
+        .media
+         .media-left
+          img(src='http://127.0.0.1/cdn/images/Author.png' style='width:80px;height:80px').media-object.img-circle
+         .media-body
+          .media-heading
+           h3=comment.FullNameReview
+          br 
+          p(style='word-break:break-all')=comment.DescReview
+
+            
+
+       

@@ -1,1 +1,42 @@
-h4 hello from main view
+
+
+
+extends layout
+
+block content
+ 
+  .container
+   .row
+    .col-sm-8
+      each book in Books
+       .col-sm-4
+        .panel.panel-default
+            .panel-body
+             .blaxkBook(style='')
+              a(href="http://127.0.0.1:4000/"+book.id)  
+               img(src=""+book.BookPic, class='img-responsive' alt="alt" )
+               
+              h4(class="")=book.BookName
+              a(href="Author/"+book.author.id)
+               p=book.author.AuthorName
+
+            
+             
+
+    .col-sm-4
+      .panel.panel-default
+          .panel-body
+           ul.list-unstyled
+            each Author in Authors
+             li
+              a(href="/Author/"+Author.id)
+               h5=Author.AuthorName  
+                span(class='pull-left')=Author.AuthorBooksNum  
+      .panel.panel-default
+          .panel-body
+           ul.list-unstyled
+            each Catigory in Catigories
+             li
+              a(href="/Catigory/"+Catigory.id) 
+               h5=Catigory.CatigoryName 
+                span(class='pull-left')=Catigory.CatigoryBooksNum  

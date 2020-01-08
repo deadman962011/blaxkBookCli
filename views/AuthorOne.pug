@@ -1,0 +1,16 @@
+extends layout
+
+
+block content
+
+  .contaner
+   each book in books
+    .col-sm-3
+        .panel.panel-default
+            .panel-body
+             .blaxkBook(style='')
+              a(href="http://127.0.0.1:4000/"+book.id)  
+               img(src=""+book.BookPic, class='img-responsive' alt="alt" )
+               
+              h4(class="")=book.BookName
+             
